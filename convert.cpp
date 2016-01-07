@@ -26,8 +26,28 @@ int main()
 
 	remove_duplicates(words);
 
+	for(int i = 0; i < words.size(); i++)
+	{
+		if(words.at(i).size() > 5)
+		{
+			str = words.at(i);
+			if(str[0] == '\"')
+			{
+				str.erase(0,1);
+				words.at(i) = str;
+			}
+			if(str[6] == ',' || str[6] == '\"')
+			{
+
+				str.erase(6,1);
+				words.at(i) = str;
+			}
+		}
+	}
+
+	remove_duplicates(words);
 	myfile.close();
-	std::ofstream write("yo.txt");
+	std::ofstream write("table_converted.txt");
 	for(int i = 0; i < words.size(); i++)
 		write << words.at(i) << std::endl;
 	write.close();
